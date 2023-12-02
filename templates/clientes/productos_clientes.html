@@ -1,0 +1,32 @@
+{% extends 'layouts/base_clientes.html' %}
+{% load humanize %}
+{% block content %}
+<main class="container">
+    <div class="row">
+        <h1 class="fw-bold bg-dark text-light mt-3 text-center p-2 rounded-4  border border-black border-3">
+            Catálogo de productos
+            <i class="bi bi-bag"></i>
+        </h1>
+    </div>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-lg-3 col-md-8">
+            <div class="card m-4 mx-2 bg-dark text-light rounded-3 border border-black border-3" style="width: 18rem;">
+                <img src="{{ producto.imagen_prod.url}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{producto.nombre_prod}}</h5>
+                    <p class="badge bg-secondary card-text fs-6 ">$ {{producto.precio|floatformat:"2"|intcomma}} COP</p>
+                    <div class="d-flex justify-content-between">
+                        {% if producto.activo == False %}
+                        <span class="card-text badge bg-danger px-5 fs-6 mb-2">Agotado</span>
+                        {% endif %}
+                    </div>
+                    <h6 class="">Local: Street Memories</h6>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+{% endblock %}

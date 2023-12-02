@@ -1,0 +1,33 @@
+{% extends 'layouts/base.html' %}
+
+{% block content %}
+<main class="container">
+    <div class="row">
+        <div class="col-md-4 offset-md-4 mt-5">
+            <div class="card card-body bg-dark text-light rounded-4  border border-black border-3">
+                <h1 class="text-light text-center">{{producto.nombre_prod}}</h1>
+                
+                {{error}}
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{form.as_p}}
+                    <button class="btn btn-success">Actualizar</button>
+                </form>
+                <br>
+                <div class="d-flex justify-content-between">
+                    <form action="{% url 'productos' %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-primary">Cancelar</button>
+                    </form>
+                    <form action="{% url 'eliminar_producto' producto.id %}" method="POST">
+                        {% csrf_token %}
+                        <button class="btn btn-danger">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+</div>
+{% endblock %}
